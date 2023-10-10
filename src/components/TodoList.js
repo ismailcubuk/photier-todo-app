@@ -1,22 +1,24 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchTodos } from '../redux/actions';
 import axios from "axios";
 
 function TodoList() {
-  const [todos, setTodos] = useState([]);
-
+  const todos = useSelector((state) => state.todos);
+  const dispatch = useDispatch();
   useEffect(() => {
-    fetchTodos();
+    fetchTodosFromApi();
   }, []);
 
-  const fetchTodos = async () => {
+  const fetchTodosFromApi = async () => {
     try {
-      const response = await axios.get("http://localhost:3001/todos"); 
-      setTodos(response.data);
+      const response = await axios.get('http://localhost:3001/todos');
+      dispatch(fetchTodos(response.data));
     } catch (error) {
-      console.error("Error fetching todos:", error);
+      console.error('Error fetching todos:', error);
     }
   };
-console.log(todos);
+
   return (
     <div>
       <h1>Todo List</h1>

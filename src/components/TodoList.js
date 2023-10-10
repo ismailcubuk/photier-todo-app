@@ -24,7 +24,7 @@ function TodoList() {
     const firstCode = Letters.match(/[A-Z]/g);
     if (firstCode) {
       dispatch({
-        type: "SET_UPPERCASE_LETTERS_FIRST_CODE",
+        type: "SET_FIRST_CODE",
         payload: firstCode.join(""),
       });
     }

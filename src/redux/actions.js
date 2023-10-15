@@ -14,7 +14,11 @@ export const setFirstCode = (letters) => ({
 });
 
 export const setSecondCode = (letters) => ({
-    type: "SET_SECOND_CODE",
-    payload: letters,
-  });
-  
+  type: "SET_SECOND_CODE",
+  payload: letters,
+});
+
+export const deleteTodo = (todoId) => ({
+  type: "DELETE_TODO",
+  payload: todoId,
+});

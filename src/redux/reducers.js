@@ -15,6 +15,14 @@ const rootReducer = (state = initialState, action) => {
       return { ...state, firstCode: action.payload };
     case "SET_SECOND_CODE":
       return { ...state, secondCode: action.payload };
+    case "DELETE_TODO":
+      const updatedTodos = state.todos.filter(
+        (todo) => todo.id !== action.payload
+      );
+      return {
+        ...state,
+        todos: updatedTodos,
+      };
     default:
       return state;
   }

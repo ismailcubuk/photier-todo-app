@@ -14,13 +14,13 @@ function App() {
         <StartChallenge />
       </div>
       <div className="flex border-2 border-red-600 w-full items-center h-5/6">
-        <div className="w-2/6 h-full border-2 border-red-700 flex justify-center items-center">
+        <div className="w-2/6 h-full p-12 flex justify-center items-center">
           <TodoList />
         </div>
-        <div className="w-2/6 border-2 border-red-700 flex justify-center">
+        <div className="w-2/6 h-full border-2 border-red-700 p-12 flex justify-center items-center">
           <TodoSearch />
         </div>
-        <div className="w-2/6 border-2 border-red-700 flex justify-center">
+        <div className="w-2/6 h-full border-2 border-red-700  p-12 flex justify-center">
           <TodoDelete />
         </div>
       </div>

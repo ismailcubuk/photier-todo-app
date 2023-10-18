@@ -2,7 +2,14 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { setDeleteResults, setLastCode } from "../redux/actions";
-import { Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Card,
+  CardContent,
+  TextField,
+  Typography,
+} from "@mui/material";
 
 function TodoDelete() {
   const dispatch = useDispatch();
@@ -27,22 +34,34 @@ function TodoDelete() {
   };
 
   return (
-    <div>
-      <Typography variant="h4">TodoDelete</Typography>
-      <input
-        type="text"
-        placeholder="Delete..."
-        value={deleteQuery}
-        onChange={(e) => setDeleteQuery(e.target.value)}
-      />
-      <button onClick={handleDelete}>Delete</button>
-      <div>
-        {deleteResults?.map((result) => (
-          <li key={result.id}> {result.desc} </li>
-        ))}
-      </div>
-      {lastCode}
-    </div>
+    <Card className="p-5 w-full h-full">
+      <CardContent className="flex justify-center flex-col items-center">
+        <Typography variant="h4">Delete Todo</Typography>
+      </CardContent>
+      <Box className="flex justify-center">
+        <TextField
+          label="Delete Request..."
+          variant="outlined"
+          size="small"
+          value={deleteQuery}
+          onChange={(e) => setDeleteQuery(e.target.value)}
+        />
+        <Button variant="contained" onClick={handleDelete}>
+          Delete
+        </Button>
+      </Box>
+      <Box className="flex justify-center p-2">
+        <Typography variant="h6">{lastCode}</Typography>
+      </Box>
+      {deleteResults?.map((result) => (
+        <Box className="p-2" key={result.id}>
+          <Typography className="pl-5" variant="body1">
+            {result.id - 1 + "."}
+            {result.desc}
+          </Typography>
+        </Box>
+      ))}
+    </Card>
   );
 }
 

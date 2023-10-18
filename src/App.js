@@ -9,21 +9,21 @@ function App() {
   const firstCode = useSelector((state) => state.firstCode);
 
   return (
-    <div className="gradient h-screen flex flex-col items-center">
-      <div className="border-2 border-green-500 w-full flex justify-center items-center h-1/6">
-        <StartChallenge />
-      </div>
-      <div className="flex border-2 border-red-600 w-full items-center h-5/6">
-        <div className="w-2/6 h-full p-12 flex justify-center items-center">
-          <TodoList />
+<div className="flex flex-col min-h-screen items-center gradient bg-cover bg-fixed h-full ">
+        <div className="border-2 border-green-500 w-full flex justify-center items-center h-60 flex-grow">
+          <StartChallenge />
         </div>
-        <div className="w-2/6 h-full border-2 border-red-700 p-12 flex justify-center items-center">
-          <TodoSearch />
+        <div className="flex border-2 flex-wrap border-red-600 w-full items-center h-full">
+          <div className="w-full h-full xl:w-2/6  p-6 flex justify-center items-center">
+            <TodoList />
+          </div>
+          <div className="w-full h-full xl:w-2/6  border-2 border-red-700 p-6 flex justify-center items-center">
+            <TodoSearch />
+          </div>
+          <div className="w-full h-full xl:w-2/6  border-2 border-red-700  p-6 flex justify-center">
+            <TodoDelete />
+          </div>
         </div>
-        <div className="w-2/6 h-full border-2 border-red-700  p-12 flex justify-center">
-          <TodoDelete />
-        </div>
-      </div>
     </div>
   );
 }

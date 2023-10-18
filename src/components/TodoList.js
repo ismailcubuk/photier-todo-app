@@ -33,7 +33,7 @@ function TodoList() {
     const Letters = todos?.map((letter) => letter.desc).join(" ");
     const firstCode = Letters?.match(/[A-Z]/g);
     if (firstCode) {
-      dispatch(setFirstCode(firstCode.join("")));
+      dispatch(setFirstCode("First Code = "+firstCode.join("")));
     }
   }, [todos, dispatch]);
   const handleDeleteTodo = (todoId) => {
@@ -41,12 +41,12 @@ function TodoList() {
   };
 
   return (
-    <Card className="p-5 w-full h-full">
-      <CardContent className="flex justify-center flex-col items-center">
+    <Card className="p-5 w-full border-2 border-red-600 h-120">
+      <CardContent className="flex justify-center flex-col items-center h-40">
         <Typography variant="h4">Todo List</Typography>
-        <Typography variant="h6">First Code = {firstCode}</Typography>
+        <Typography variant="h6">{firstCode}</Typography>
       </CardContent>
-      <Box className="border-2">
+      <Box className="overflow-auto border-2 border-gray-400 h-80">
         {todos.map((todo) => (
           <Box key={todo.id} className="flex p-2 border-2 hover:bg-blue-200">
             <Button

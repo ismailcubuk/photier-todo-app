@@ -41,7 +41,7 @@ function TodoList() {
   };
 
   return (
-    <Card className="p-5 w-full border-2 border-red-600 h-120">
+    <Card className="p-5 w-full h-120">
       <CardContent className="flex justify-center flex-col items-center h-40">
         <Typography variant="h4">Todo List</Typography>
         <Typography variant="h6">{firstCode}</Typography>

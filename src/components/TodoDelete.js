@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { setDeleteResults, setLastCode } from "../redux/actions";
+import { Typography } from "@mui/material";
 
 function TodoDelete() {
   const dispatch = useDispatch();
@@ -27,7 +28,7 @@ function TodoDelete() {
 
   return (
     <div>
-      <h2>TodoDelete</h2>
+      <Typography variant="h4">TodoDelete</Typography>
       <input
         type="text"
         placeholder="Delete..."

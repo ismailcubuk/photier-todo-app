@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { Button, TextField } from "@mui/material";
 
 const BASE_URL = "https://challenge.photier.com";
 const TOKEN = "3ff0695a1a16fc4814f4baf64ebac6af";
@@ -28,13 +29,9 @@ const StartChallenge = () => {
   return (
     <div>
       <h2>Challenge Başlat</h2>
-      <input
-        type="email"
-        placeholder="E-posta adresinizi girin"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <button onClick={startChallenge}>Başlat</button>
+      <TextField 
+      label="Mail" variant="outlined" size="small" value={email} onChange={(e) => setEmail(e.target.value)}/>
+      <Button variant="contained" onClick={startChallenge}>Start</Button>
     </div>
   );
 };

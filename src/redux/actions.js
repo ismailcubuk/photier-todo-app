@@ -1,3 +1,4 @@
+// TODOS
 export const fetchTodos = (todos) => ({
   type: "FETCH_TODOS",
   payload: todos,
@@ -7,6 +8,18 @@ export const setSearchResults = (results) => ({
   type: "SET_SEARCH_RESULTS",
   payload: results,
 });
+
+export const setDeleteResults = (results) => ({
+  type: "SET_DELETE_RESULTS",
+  payload: results,
+});
+
+export const deleteTodo = (todoId) => ({
+  type: "DELETE_TODO",
+  payload: todoId,
+});
+
+// CODES
 
 export const setFirstCode = (letters) => ({
   type: "SET_FIRST_CODE",
@@ -18,7 +31,7 @@ export const setSecondCode = (letters) => ({
   payload: letters,
 });
 
-export const deleteTodo = (todoId) => ({
-  type: "DELETE_TODO",
-  payload: todoId,
+export const setLastCode = (letters) => ({
+  type: "SET_LAST_CODE",
+  payload: letters,
 });

@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchTodos, deleteTodo } from "../redux/actions"; 
+import { fetchTodos, deleteTodo, setFirstCode } from "../redux/actions";
 import axios from "axios";
 
 function TodoList() {
@@ -20,14 +20,20 @@ function TodoList() {
       console.error("Error fetching todos:", error);
     }
   };
-
+  useEffect(() => {
+    const Letters = todos?.map((letter) => letter.desc).join(" ");
+    const firstCode = Letters?.match(/[A-Z]/g);
+    if (firstCode) {
+      dispatch(setFirstCode(firstCode.join("")));
+    }
+  }, [todos, dispatch]);
   const handleDeleteTodo = (todoId) => {
     dispatch(deleteTodo(todoId));
   };
 
   return (
     <div>
-      <h1>Todo List</h1>
+      <h2>Todo List</h2>
       <ul>
         {todos.map((todo) => (
           <li key={todo.id}>

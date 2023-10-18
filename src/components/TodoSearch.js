@@ -4,11 +4,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { setSearchResults, setSecondCode } from "../redux/actions";
 
 function TodoSearch() {
+  const dispatch = useDispatch();
   const [searchQuery, setSearchQuery] = useState("");
   const secondCode = useSelector((state) => state.secondCode);
   const searchResults = useSelector((state) => state.searchResults);
-
-  const dispatch = useDispatch();
 
   const handleSearch = () => {
     axios
@@ -29,9 +28,10 @@ function TodoSearch() {
     const Letters = searchResults?.map((letter) => letter.desc).join(" ");
     const secondCode = Letters?.match(/[A-Z]/g);
     if (secondCode) {
-      dispatch(setSecondCode(secondCode.join("")));
+      dispatch(setSecondCode("Meaning of life according to " + secondCode.join("") + " = 42"));
     }
   }, [searchResults, dispatch]);
+
   return (
     <div>
       <h2>Search Todo</h2>
@@ -47,7 +47,7 @@ function TodoSearch() {
           <li key={result.id}> {result.desc} </li>
         ))}
       </div>
-      {secondCode}
+      <div> {secondCode} </div>
     </div>
   );
 }

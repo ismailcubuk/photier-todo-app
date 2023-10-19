@@ -2,19 +2,19 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Box, Button, TextField, Typography } from "@mui/material";
 import photier from "../photier.png";
-const BASE_URL = "https://challenge.photier.com";
-const TOKEN = "3ff0695a1a16fc4814f4baf64ebac6af";
+const apiUrl = process.env.REACT_APP_API_URL;
+const apiToken = process.env.REACT_APP_API_TOKEN;
 const StartChallenge = () => {
   const [email, setEmail] = useState("");
 
   const startChallenge = async () => {
     try {
       const response = await axios.post(
-        `${BASE_URL}/start/`,
+        `${apiUrl}/start/`,
         { email },
         {
           headers: {
-            Authorization: `Bearer ${TOKEN}`,
+            Authorization: `Bearer ${apiToken}`,
           },
         }
       );

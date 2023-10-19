@@ -44,29 +44,34 @@ function TodoSearch() {
       );
     }
   }, [searchResults, dispatch]);
-
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    handleSearch();
+  };
   return (
     <Card className="p-5 w-full h-120">
-      <Box className="h-40">
-        <CardContent className="flex justify-center flex-col items-center">
-          <Typography variant="h4">Search Todo</Typography>
-        </CardContent>
-        <Box className="flex justify-center">
-          <TextField
-            label="Search..."
-            variant="outlined"
-            size="small"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-          />
-          <Button variant="contained" onClick={handleSearch}>
-            Search
-          </Button>
+      <form onSubmit={handleSubmit}>
+        <Box className="h-40">
+          <CardContent className="flex justify-center flex-col items-center">
+            <Typography variant="h4">Search Todo</Typography>
+          </CardContent>
+          <Box className="flex justify-center">
+            <TextField
+              label="Search..."
+              variant="outlined"
+              size="small"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+            <Button variant="contained" onClick={handleSearch}>
+              Search
+            </Button>
+          </Box>
+          <Box className="flex justify-center p-2">
+            <Typography variant="h6">{secondCode}</Typography>
+          </Box>
         </Box>
-        <Box className="flex justify-center p-2">
-          <Typography variant="h6">{secondCode}</Typography>
-        </Box>
-      </Box>
+      </form>
       <Box className="overflow-auto border-2 border-gray-400 h-80">
         {searchResults?.map((result) => (
           <Box className="p-2 flex border-2 hover:bg-blue-200" key={result.id}>

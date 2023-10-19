@@ -27,35 +27,40 @@ function TodoDelete() {
       })
       .then((response) => {
         dispatch(setDeleteResults(response.data));
-        dispatch(setLastCode("Last Code = " + "KEBAB"));
+        dispatch(setLastCode("Last Code = KEBAB"));
       })
       .catch((error) => {
         console.error("Search error:", error);
       });
   };
-
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    handleDelete();
+  };
   return (
     <Card className="p-5 w-full h-120 ">
-      <Box className="h-40">
-        <CardContent className="flex justify-center flex-col items-center">
-          <Typography variant="h4">Delete Todo</Typography>
-        </CardContent>
-        <Box className="flex justify-center">
-          <TextField
-            label="Delete Request..."
-            variant="outlined"
-            size="small"
-            value={deleteQuery}
-            onChange={(e) => setDeleteQuery(e.target.value)}
-          />
-          <Button variant="contained" onClick={handleDelete}>
-            Delete
-          </Button>
+      <form onSubmit={handleSubmit}>
+        <Box className="h-40">
+          <CardContent className="flex justify-center flex-col items-center">
+            <Typography variant="h4">Delete Todo</Typography>
+          </CardContent>
+          <Box className="flex justify-center">
+            <TextField
+              label="Delete Request..."
+              variant="outlined"
+              size="small"
+              value={deleteQuery}
+              onChange={(e) => setDeleteQuery(e.target.value)}
+            />
+            <Button variant="contained" onClick={handleDelete}>
+              Delete
+            </Button>
+          </Box>
+          <Box className="flex justify-center p-2">
+            <Typography variant="h6">{lastCode}</Typography>
+          </Box>
         </Box>
-        <Box className="flex justify-center p-2">
-          <Typography variant="h6">{lastCode}</Typography>
-        </Box>
-      </Box>
+      </form>
       <Box className="overflow-auto border-2 border-gray-400 h-80">
         {deleteResults?.map((result) => (
           <Box

@@ -16,12 +16,13 @@ function TodoSearch() {
   const [searchQuery, setSearchQuery] = useState("");
   const secondCode = useSelector((state) => state.secondCode);
   const searchResults = useSelector((state) => state.searchResults);
-
+  const apiUrl = process.env.REACT_APP_API_URL;
+  const apiToken = process.env.REACT_APP_API_TOKEN;
   const handleSearch = () => {
     axios
-      .get(`https://challenge.photier.com/todos/search?query=${searchQuery}`, {
+      .get(`${apiUrl}/todos/search?query=${searchQuery}`, {
         headers: {
-          Authorization: "3ff0695a1a16fc4814f4baf64ebac6af",
+          Authorization: apiToken,
         },
       })
       .then((response) => {

@@ -16,12 +16,13 @@ function TodoDelete() {
   const [deleteQuery, setDeleteQuery] = useState("");
   const deleteResults = useSelector((state) => state.deleteResults);
   const lastCode = useSelector((state) => state.lastCode);
-
+  const apiUrl = process.env.REACT_APP_API_URL;
+  const apiToken = process.env.REACT_APP_API_TOKEN;
   const handleDelete = () => {
     axios
-      .delete(`https://challenge.photier.com/todos?id=${deleteQuery}`, {
+      .delete(`${apiUrl}/todos?id=${deleteQuery}`, {
         headers: {
-          Authorization: "3ff0695a1a16fc4814f4baf64ebac6af",
+          Authorization: apiToken,
         },
       })
       .then((response) => {

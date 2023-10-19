@@ -1,9 +1,12 @@
 const express = require("express");
 const axios = require("axios");
+const dotenv = require("dotenv");
+dotenv.config();
+
 const app = express();
 
-const API_URL = "https://challenge.photier.com/todos";
-const TOKEN = "3ff0695a1a16fc4814f4baf64ebac6af";
+const API_URL = process.env.API_URL;
+const TOKEN = process.env.TOKEN;
 
 app.use(express.json());
 

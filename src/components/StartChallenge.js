@@ -19,9 +19,9 @@ const StartChallenge = () => {
         }
       );
 
-      console.log("Challenge başlatıldı:", response.data);
+      console.log("Challenge start:", response.data);
     } catch (error) {
-      console.error("Challenge başlatılırken hata oluştu:", error);
+      console.error("An error occurred while starting the challenge:", error);
     }
   };
 

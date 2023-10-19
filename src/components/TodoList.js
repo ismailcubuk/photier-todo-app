@@ -2,14 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchTodos, deleteTodo, setFirstCode } from "../redux/actions";
 import axios from "axios";
-import {
-  Box,
-  Button,
-  Card,
-  CardContent,
-  Divider,
-  Typography,
-} from "@mui/material";
+import { Box, Button, Card, CardContent, Typography } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 function TodoList() {
@@ -33,7 +26,7 @@ function TodoList() {
     const Letters = todos?.map((letter) => letter.desc).join(" ");
     const firstCode = Letters?.match(/[A-Z]/g);
     if (firstCode) {
-      dispatch(setFirstCode("First Code = "+firstCode.join("")));
+      dispatch(setFirstCode("First Code = " + firstCode.join("")));
     }
   }, [todos, dispatch]);
   const handleDeleteTodo = (todoId) => {

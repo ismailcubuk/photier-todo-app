@@ -7,7 +7,7 @@ import photier from "./photier.png";
 function App() {
   return (
     <div className="flex flex-col min-h-screen items-center gradient bg-cover bg-fixed h-full ">
-      <div className="w-full flex justify-center h-32 border-2 items-end">
+      <div className="w-full flex justify-center h-32 items-end">
         <img src={photier} className="w-96" alt="photier" />
       </div>
       <div className="flex flex-wrap w-full items-center">

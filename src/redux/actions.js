@@ -19,9 +19,14 @@ export const deleteTodo = (todoId) => ({
   payload: todoId,
 });
 
-export const setDeleteQuery = (query) => ({
+export const setDeleteQuery = (deleteQuery) => ({
   type: "SET_DELETE_QUERY",
-  payload: query,
+  payload: deleteQuery,
+});
+
+export const setSearchQuery = (searchQuery) => ({
+  type: "SET_SEARCH_QUERY",
+  payload: searchQuery,
 });
 
 export const setEmail = (email) => ({

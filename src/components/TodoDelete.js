@@ -2,26 +2,16 @@ import React from "react";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { setDeleteResults, setLastCode, setDeleteQuery } from "../redux/actions";
-import {
-  Box,
-  Button,
-  Card,
-  CardContent,
-  TextField,
-  Typography,
-} from "@mui/material";
+import {Box, Button, Card, CardContent, TextField, Typography} from "@mui/material";
 
 const apiUrl = process.env.REACT_APP_API_URL;
 const apiToken = process.env.REACT_APP_API_TOKEN;
 
 function TodoDelete() {
   const dispatch = useDispatch();
-
-  const deleteQuery = useSelector((state) => state.query);
+  const deleteQuery = useSelector((state) => state.deleteQuery);
   const deleteResults = useSelector((state) => state.deleteResults);
   const lastCode = useSelector((state) => state.lastCode);
-
-
   
   const handleDelete = () => {
     axios
@@ -38,10 +28,12 @@ function TodoDelete() {
         console.error("Search error:", error);
       });
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     handleDelete();
   };
+  
   return (
     <Card className="p-5 w-full h-120 ">
       <form onSubmit={handleSubmit}>

@@ -10,6 +10,7 @@ function CompleteTodo() {
   const zipFile = useSelector((state) => state.zipFile);
 
   const apiUrl = process.env.REACT_APP_API_URL;
+  const apiToken = process.env.REACT_APP_API_TOKEN;
 
  const handleFileChange = (e) => {
     dispatch(setZipFile(e.target.files[0]));
@@ -26,7 +27,7 @@ function CompleteTodo() {
       .post(`${apiUrl}/complete`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
-          Authorization: `Bearer 3ff0695a1a16fc4814f4baf64ebac6af`,
+          Authorization: `Bearer ${apiToken}`,
         },
       })
       .then((response) => {

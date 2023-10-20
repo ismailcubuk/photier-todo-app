@@ -1,23 +1,18 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
-import { setSearchResults, setSecondCode } from "../redux/actions";
-import {
-  Box,
-  Button,
-  Card,
-  CardContent,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { setSearchResults, setSecondCode, setSearchQuery } from "../redux/actions";
+import {Box, Button, Card, CardContent, TextField, Typography} from "@mui/material";
+
+const apiUrl = process.env.REACT_APP_API_URL;
+const apiToken = process.env.REACT_APP_API_TOKEN;
 
 function TodoSearch() {
   const dispatch = useDispatch();
-  const [searchQuery, setSearchQuery] = useState("");
   const secondCode = useSelector((state) => state.secondCode);
   const searchResults = useSelector((state) => state.searchResults);
-  const apiUrl = process.env.REACT_APP_API_URL;
-  const apiToken = process.env.REACT_APP_API_TOKEN;
+  const searchQuery = useSelector((state) => state.searchQuery);
+
   const handleSearch = () => {
     axios
       .get(`${apiUrl}/todos/search?query=${searchQuery}`, {
@@ -44,10 +39,12 @@ function TodoSearch() {
       );
     }
   }, [searchResults, dispatch]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     handleSearch();
   };
+  
   return (
     <Card className="p-5 w-full h-120">
       <form onSubmit={handleSubmit}>
@@ -61,7 +58,7 @@ function TodoSearch() {
               variant="outlined"
               size="small"
               value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+              onChange={(e) => dispatch(setSearchQuery(e.target.value))}
             />
             <Button variant="contained" onClick={handleSearch}>
               Search

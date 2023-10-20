@@ -32,6 +32,9 @@ function TodoList() {
   const handleDeleteTodo = (todoId) => {
     dispatch(deleteTodo(todoId));
   };
+  const filteredTodo = todos.filter(todo =>
+    todo.name.toLowerCase().includes(searchText.toLowerCase())
+  );
 
   return (
     <Card className="p-5 w-full h-120">

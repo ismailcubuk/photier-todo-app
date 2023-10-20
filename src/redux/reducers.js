@@ -6,6 +6,8 @@ const initialState = {
   secondCode: "",
   lastCode: "",
   finalCode: "",
+  deleteQuery: "",
+  searchQuery: "",
   zipFile: null,
 };
 
@@ -25,12 +27,14 @@ const rootReducer = (state = initialState, action) => {
       return { ...state, lastCode: action.payload };
     case "SET_FINAL_CODE":
       return { ...state, finalCode: action.payload };
-    case "SET_ZIP_FILE":
-      return { ...state, zipFile: action.payload };
     case "SET_DELETE_QUERY":
-      return { ...state, query: action.payload };
+      return { ...state, deleteQuery: action.payload };
+    case "SET_SEARCH_QUERY":
+      return { ...state, searchQuery: action.payload };
     case "SET_EMAIL":
       return { ...state, email: action.payload };
+    case "SET_ZIP_FILE":
+      return { ...state, zipFile: action.payload };
     case "DELETE_TODO":
       const updatedTodos = state.todos.filter(
         (todo) => todo.id !== action.payload

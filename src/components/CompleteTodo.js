@@ -1,17 +1,22 @@
-import React, { useState } from "react";
+import React from "react";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { setFinalCode, setZipFile } from "../redux/actions";
 import { Typography, Button, TextField } from "@mui/material";
 
 function CompleteTodo() {
-  const [finalCode, setFinalCode] = useState("");
-  const [zipFile, setZipFile] = useState(null);
+  const dispatch = useDispatch();
+  const finalCode = useSelector((state) => state.finalCode);
+  const zipFile = useSelector((state) => state.zipFile);
+
   const apiUrl = process.env.REACT_APP_API_URL;
-  const handleFileChange = (event) => {
-    setZipFile(event.target.files[0]);
+
+ const handleFileChange = (e) => {
+    dispatch(setZipFile(e.target.files[0]));
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
     const formData = new FormData();
     formData.append("code", finalCode);
@@ -43,7 +48,7 @@ function CompleteTodo() {
               variant="outlined"
               size="small"
               value={finalCode}
-              onChange={(e) => setFinalCode(e.target.value)}
+              onChange={(e) => dispatch(setFinalCode(e.target.value))}
             />
           </div>
           {/* UPLOAD */}

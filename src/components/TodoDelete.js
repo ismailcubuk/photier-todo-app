@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
-import { setDeleteResults, setLastCode } from "../redux/actions";
+import { setDeleteResults, setLastCode, setDeleteQuery } from "../redux/actions";
 import {
   Box,
   Button,
@@ -11,13 +11,18 @@ import {
   Typography,
 } from "@mui/material";
 
+const apiUrl = process.env.REACT_APP_API_URL;
+const apiToken = process.env.REACT_APP_API_TOKEN;
+
 function TodoDelete() {
   const dispatch = useDispatch();
-  const [deleteQuery, setDeleteQuery] = useState("");
+
+  const deleteQuery = useSelector((state) => state.query);
   const deleteResults = useSelector((state) => state.deleteResults);
   const lastCode = useSelector((state) => state.lastCode);
-  const apiUrl = process.env.REACT_APP_API_URL;
-  const apiToken = process.env.REACT_APP_API_TOKEN;
+
+
+  
   const handleDelete = () => {
     axios
       .delete(`${apiUrl}/todos?id=${deleteQuery}`, {
@@ -50,7 +55,7 @@ function TodoDelete() {
               variant="outlined"
               size="small"
               value={deleteQuery}
-              onChange={(e) => setDeleteQuery(e.target.value)}
+              onChange={(e) => dispatch(setDeleteQuery(e.target.value))}
             />
             <Button variant="contained" onClick={handleDelete}>
               Delete

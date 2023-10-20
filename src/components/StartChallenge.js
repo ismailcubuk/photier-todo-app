@@ -1,10 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
 import { Box, Button, TextField, Typography } from "@mui/material";
+import { setEmail } from "../redux/actions";
+
 const apiUrl = process.env.REACT_APP_API_URL;
 const apiToken = process.env.REACT_APP_API_TOKEN;
+
 const StartChallenge = () => {
-  const [email, setEmail] = useState("");
+  const dispatch = useDispatch();
+  const email = useSelector((state) => state.email);
 
   const startChallenge = async () => {
     try {
@@ -35,7 +40,7 @@ const StartChallenge = () => {
             size="small"
             fullWidth
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => dispatch(setEmail(e.target.value))}
           />
           <Button variant="contained" onClick={startChallenge}>
             Start

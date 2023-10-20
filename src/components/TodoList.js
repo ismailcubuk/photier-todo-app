@@ -1,9 +1,8 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchTodos, deleteTodo, setFirstCode } from "../redux/actions";
+import { fetchTodos, setFirstCode } from "../redux/actions";
 import axios from "axios";
-import { Box, Button, Card, CardContent, Typography } from "@mui/material";
-import DeleteIcon from "@mui/icons-material/Delete";
+import { Box, Card, CardContent, Typography } from "@mui/material";
 
 function TodoList() {
   const todos = useSelector((state) => state.todos);
@@ -29,12 +28,6 @@ function TodoList() {
       dispatch(setFirstCode("First Code = " + firstCode.join("")));
     }
   }, [todos, dispatch]);
-  const handleDeleteTodo = (todoId) => {
-    dispatch(deleteTodo(todoId));
-  };
-  const filteredTodo = todos.filter(todo =>
-    todo.name.toLowerCase().includes(searchText.toLowerCase())
-  );
 
   return (
     <Card className="p-5 w-full h-120">
@@ -45,13 +38,9 @@ function TodoList() {
       <Box className="overflow-auto border-2 border-gray-400 h-80">
         {todos.map((todo) => (
           <Box key={todo.id} className="flex p-2 border-2 hover:bg-blue-200">
-            <Button
-              size="small"
-              variant="contained"
-              onClick={() => handleDeleteTodo(todo.id)}
-            >
-              <DeleteIcon />
-            </Button>
+             <div className="w-16 h-8 rounded-md flex justify-center items-center text-white bg-custom-blue ">
+              {todo.id - 1 + "."}
+            </div>
             <Typography className="pl-5 flex items-center" variant="body1">
               {todo.desc}
             </Typography>

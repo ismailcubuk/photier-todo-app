@@ -1,8 +1,9 @@
 import React from "react";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
-import { setDeleteResults, setLastCode, setDeleteQuery } from "../redux/actions";
+import { setDeleteResults, setLastCode, setDeleteQuery, deleteTodo } from "../redux/actions";
 import {Box, Button, Card, CardContent, TextField, Typography} from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 const apiUrl = process.env.REACT_APP_API_URL;
 const apiToken = process.env.REACT_APP_API_TOKEN;
@@ -33,7 +34,7 @@ function TodoDelete() {
     e.preventDefault();
     handleDelete();
   };
-  
+
   return (
     <Card className="p-5 w-full h-120 ">
       <form onSubmit={handleSubmit}>
@@ -64,9 +65,13 @@ function TodoDelete() {
             className="flex p-2 items-center border-2 hover:bg-blue-200"
             key={result.id}
           >
-            <div className="w-16 h-8 rounded-md flex justify-center items-center text-white bg-custom-blue ">
-              {result.id - 1 + "."}
-            </div>
+            <Button
+              size="small"
+              variant="contained"
+              onClick={() => dispatch(deleteTodo(result.id))}
+            >
+              <DeleteIcon />
+            </Button>
             <Typography
               className="pl-5 flex w-5/6 items-center"
               variant="body1"

@@ -36,12 +36,12 @@ const rootReducer = (state = initialState, action) => {
     case "SET_ZIP_FILE":
       return { ...state, zipFile: action.payload };
     case "DELETE_TODO":
-      const updatedTodos = state.todos.filter(
-        (todo) => todo.id !== action.payload
+      const updatedTodos = state.deleteResults.filter(
+        (result) => result.id !== action.payload
       );
       return {
         ...state,
-        todos: updatedTodos,
+        deleteResults: updatedTodos,
       };
     default:
       return state;

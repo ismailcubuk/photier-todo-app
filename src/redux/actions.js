@@ -14,9 +14,9 @@ export const setDeleteResults = (results) => ({
   payload: results,
 });
 
-export const deleteTodo = (todoId) => ({
+export const deleteTodo = (resultId) => ({
   type: "DELETE_TODO",
-  payload: todoId,
+  payload: resultId,
 });
 
 export const setDeleteQuery = (deleteQuery) => ({

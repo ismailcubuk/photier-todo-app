@@ -9,9 +9,6 @@ function CompleteTodo() {
   const finalCode = useSelector((state) => state.finalCode);
   const zipFile = useSelector((state) => state.zipFile);
 
-  const apiUrl = process.env.REACT_APP_API_URL;
-  const apiToken = process.env.REACT_APP_API_TOKEN;
-
  const handleFileChange = (e) => {
     dispatch(setZipFile(e.target.files[0]));
   };
@@ -24,12 +21,7 @@ function CompleteTodo() {
     formData.append("file", zipFile);
 
     axios
-      .post(`${apiUrl}/complete`, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-          Authorization: `Bearer ${apiToken}`,
-        },
-      })
+    .post(`http://localhost:3001/todos/complete`, formData)
       .then((response) => {
         console.log("Submission successful:", response.data);
       })

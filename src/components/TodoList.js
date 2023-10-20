@@ -10,17 +10,18 @@ function TodoList() {
   const firstCode = useSelector((state) => state.firstCode);
 
   useEffect(() => {
-    fetchTodosFromApi();
-  }, []);
-
-  const fetchTodosFromApi = async () => {
-    try {
-      const response = await axios.get("http://localhost:3001/todos");
-      dispatch(fetchTodos(response.data));
-    } catch (error) {
-      console.error("Error fetching todos:", error);
+    async function fetchData() {
+      try {
+        const response = await axios.get("http://localhost:3001/todos");
+        dispatch(fetchTodos(response.data));
+      } catch (error) {
+        console.error("Error fetching todos:", error);
+      }
     }
-  };
+  
+    fetchData();
+  }, [dispatch]);
+
   useEffect(() => {
     const Letters = todos?.map((letter) => letter.desc).join(" ");
     const firstCode = Letters?.match(/[A-Z]/g);

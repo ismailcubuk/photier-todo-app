@@ -5,9 +5,6 @@ import { setDeleteResults, setLastCode, setDeleteQuery, deleteTodo } from "../re
 import {Box, Button, Card, CardContent, TextField, Typography} from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 
-const apiUrl = process.env.REACT_APP_API_URL;
-const apiToken = process.env.REACT_APP_API_TOKEN;
-
 function TodoDelete() {
   const dispatch = useDispatch();
   const deleteQuery = useSelector((state) => state.deleteQuery);
@@ -16,18 +13,14 @@ function TodoDelete() {
   
   const handleDelete = () => {
     axios
-      .delete(`${apiUrl}/todos?id=${deleteQuery}`, {
-        headers: {
-          Authorization: apiToken,
-        },
-      })
-      .then((response) => {
-        dispatch(setDeleteResults(response.data));
-        dispatch(setLastCode("Last Code = KEBAB"));
-      })
-      .catch((error) => {
-        console.error("Search error:", error);
-      });
+    .delete(`http://localhost:3001/todos/delete?id=${deleteQuery}`)
+    .then((response) => {
+          dispatch(setDeleteResults(response.data));
+          dispatch(setLastCode("Last Code = KEBAB"));
+        })
+    .catch((error) => {
+      console.error("Search error:", error);
+    });
   };
 
   const handleSubmit = (e) => {

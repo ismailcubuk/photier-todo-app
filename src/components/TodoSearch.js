@@ -4,9 +4,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { setSearchResults, setSecondCode, setSearchQuery } from "../redux/actions";
 import {Box, Button, Card, CardContent, TextField, Typography} from "@mui/material";
 
-const apiUrl = process.env.REACT_APP_API_URL;
-const apiToken = process.env.REACT_APP_API_TOKEN;
-
 function TodoSearch() {
   const dispatch = useDispatch();
   const secondCode = useSelector((state) => state.secondCode);
@@ -15,11 +12,7 @@ function TodoSearch() {
 
   const handleSearch = () => {
     axios
-      .get(`${apiUrl}/todos/search?query=${searchQuery}`, {
-        headers: {
-          Authorization: apiToken,
-        },
-      })
+      .get(`http://localhost:3001/todos/search?query=${searchQuery}`)
       .then((response) => {
         dispatch(setSearchResults(response.data));
       })
@@ -27,7 +20,6 @@ function TodoSearch() {
         console.error("Search error:", error);
       });
   };
-
   useEffect(() => {
     const Letters = searchResults?.map((letter) => letter.desc).join(" ");
     const secondCode = Letters?.match(/[A-Z]/g);

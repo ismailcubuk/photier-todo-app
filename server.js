@@ -5,15 +5,15 @@ dotenv.config();
 
 const app = express();
 
-const API_URL = process.env.API_URL;
-const TOKEN = process.env.TOKEN;
+const apiUrl = process.env.REACT_APP_API_URL;
+const apiToken = process.env.REACT_APP_API_TOKEN;
 
 app.use(express.json());
 
 app.get("/todos", async (req, res) => {
   try {
-    const response = await axios.get(API_URL, {
-      headers: { Authorization: `Bearer ${TOKEN}` },
+    const response = await axios.get(`${apiUrl}/todos`, {
+      headers: { Authorization: `Bearer ${apiToken}` },
     });
     res.json(response.data);
   } catch (error) {

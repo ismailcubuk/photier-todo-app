@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Box, Button, TextField, Typography } from "@mui/material";
-import photier from "../photier.png";
 const apiUrl = process.env.REACT_APP_API_URL;
 const apiToken = process.env.REACT_APP_API_TOKEN;
 const StartChallenge = () => {
@@ -27,7 +26,6 @@ const StartChallenge = () => {
 
   return (
     <Box className="w-full h-full flex justify-center items-center flex-col gap-4">
-      <img src={photier} className="w-96" alt="photier" />
       <Box className="bg-white p-5 w-96 rounded-md flex flex-col items-center ">
         <Typography variant="h4">Start Challenge</Typography>
         <Box className="flex">

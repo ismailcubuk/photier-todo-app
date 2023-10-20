@@ -52,7 +52,7 @@ function CompleteTodo() {
             />
           </div>
           {/* UPLOAD */}
-          <div className="flex flex-row-reverse justify-end xl:flex-col w-1/2">
+          <div className="flex flex-row-reverse xl:justify-start justify-end xl:flex-col w-1/2">
             {zipFile ? (
               zipFile && (
                 <Typography variant="h6" className="flex">
@@ -72,7 +72,7 @@ function CompleteTodo() {
               onChange={handleFileChange}
             />
             <label htmlFor="file-upload-input">
-              <Button variant="contained" component="span" className="xl:w-2/4">
+              <Button variant="contained" component="span" >
                 Upload File
               </Button>
             </label>

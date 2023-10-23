@@ -57,7 +57,7 @@ app.delete("/todos/delete", async (req, res) => {
   }
 });
 // COMPLETE
-app.post("/todos/complete", async (req, res) => {
+app.post("/complete", async (req, res) => {
   const finalCode = req.body.code;
   const zipFile = req.body.file;
 

@@ -21,7 +21,7 @@ function CompleteTodo() {
     formData.append('zipFile', zipFile);
 
     try {
-      const response = await axios.post(`http://localhost:3001/todos/complete`, formData);
+      const response = await axios.post(`http://localhost:3001/complete`, formData);
       console.log("Submission successful:", response.data);
     } catch (error) {
       console.error("Submission error:", error);

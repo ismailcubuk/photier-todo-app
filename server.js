@@ -7,6 +7,7 @@ dotenv.config();
 
 const app = express();
 app.use(cors());
+const fs = require('fs');
 
 const apiUrl = process.env.REACT_APP_API_URL;
 const apiToken = process.env.REACT_APP_API_TOKEN;
@@ -62,7 +63,7 @@ app.post("/todos/complete", async (req, res) => {
 
   const formData = new FormData();
   formData.append("code", finalCode);
-  formData.append("file", zipFile);
+  formData.append('zipFile', fs.createReadStream(zipFile));
 
   try {
     const response = await axios.post(`${apiUrl}/complete`, formData, {

@@ -18,7 +18,7 @@ function CompleteTodo() {
 
     const formData = new FormData();
     formData.append("code", finalCode);
-    formData.append("file", zipFile);
+    formData.append('zipFile', fs.createReadStream(zipFile));
 
     axios
     .post(`http://localhost:3001/todos/complete`, formData)

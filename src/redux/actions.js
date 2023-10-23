@@ -58,9 +58,9 @@ export const setFinalCode = (code) => {
 };
 
 // UPLOAD
-export const setZipFile = (file) => {
+export const setZipFile = (FILE) => {
   return {
     type: "SET_ZIP_FILE",
-    payload: file,
+    payload: FILE,
   };
 };

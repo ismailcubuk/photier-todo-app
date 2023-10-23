@@ -19,7 +19,6 @@ function CompleteTodo() {
     const formData = new FormData();
     formData.append("CODE", finalCode);
     formData.append('FILE', zipFile); 
-
     try {
       const response = await axios.post(`http://localhost:3001/complete`, formData);
       console.log("Submission successful:", response.data);

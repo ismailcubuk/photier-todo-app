@@ -13,21 +13,19 @@ function CompleteTodo() {
     dispatch(setZipFile(e.target.files[0]));
   };
 
-  const handleSubmit = (e) => {
+   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const formData = new FormData();
     formData.append("code", finalCode);
-    formData.append('zipFile', fs.createReadStream(zipFile));
+    formData.append('zipFile', zipFile);
 
-    axios
-    .post(`http://localhost:3001/todos/complete`, formData)
-      .then((response) => {
-        console.log("Submission successful:", response.data);
-      })
-      .catch((error) => {
-        console.error("Submission error:", error);
-      });
+    try {
+      const response = await axios.post(`http://localhost:3001/todos/complete`, formData);
+      console.log("Submission successful:", response.data);
+    } catch (error) {
+      console.error("Submission error:", error);
+    }
   };
   return (
     <div className="bg-white rounded-md p-5 mx-5 w-full">

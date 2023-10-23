@@ -7,13 +7,14 @@ dotenv.config();
 
 const app = express();
 app.use(cors());
-const fs = require('fs');
+const multer = require('multer');
 
 const apiUrl = process.env.REACT_APP_API_URL;
 const apiToken = process.env.REACT_APP_API_TOKEN;
 
 app.use(express.json());
-
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage });
 // TODOS
 app.get("/todos", async (req, res) => {
   try {
@@ -57,13 +58,13 @@ app.delete("/todos/delete", async (req, res) => {
   }
 });
 // COMPLETE
-app.post("/complete", async (req, res) => {
+app.post("/complete", upload.single('FILE'), async (req, res) => {
   const finalCode = req.body.code;
-  const zipFile = req.body.file;
-
+  const zipFile = req.file;
+  
   const formData = new FormData();
-  formData.append("code", finalCode);
-  formData.append('zipFile', fs.createReadStream(zipFile));
+  formData.append("CODE", finalCode);
+  formData.append('FILE',zipFile);
 
   try {
     const response = await axios.post(`${apiUrl}/complete`, formData, {

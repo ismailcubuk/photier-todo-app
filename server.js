@@ -58,13 +58,13 @@ app.delete("/todos/delete", async (req, res) => {
   }
 });
 // COMPLETE
-app.post("/complete", upload.single("FILE"), async (req, res) => {
-  const finalCode = req.body.CODE;
+app.post("/complete", upload.single("file"), async (req, res) => {
+  const finalCode = req.body.code;
   const zipFile = req.file;
   const formData = new FormData();
 
-  formData.append("CODE", finalCode);
-  formData.append("FILE", zipFile);
+  formData.append("code", finalCode);
+  formData.append("file", zipFile);
 
   try {
     const response = await axios.post(`${apiUrl}/complete`, formData, {
@@ -73,9 +73,7 @@ app.post("/complete", upload.single("FILE"), async (req, res) => {
         Authorization: `Bearer ${apiToken}`,
       },
     });
-    res.json(response.data);
-    res.status(200).send("Submission successful");
-
+    res.status(500).json({ data: response.data, message: "Submission successful" });
   } catch (error) {
     console.error("Error submitting data:", error);
     res.status(500).json({ error: "An error occurred while submitting data." });

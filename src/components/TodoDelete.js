@@ -16,7 +16,7 @@ function TodoDelete() {
     .delete(`http://localhost:3001/todos/delete?id=${deleteQuery}`)
     .then((response) => {
           dispatch(setDeleteResults(response.data));
-          dispatch(setLastCode("Last Code = KEBAB"));
+          dispatch(setLastCode("Last Code = MENEMEN"));
         })
     .catch((error) => {
       console.error("Search error:", error);
